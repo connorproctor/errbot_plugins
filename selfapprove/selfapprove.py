@@ -50,14 +50,14 @@ class Selfapprove(BotPlugin):
         match = re.search(r"https://github.com/(.+)/(.+)/pull/([0-9]+)", pr)
         if not match:
             return f"PR URL {pr} did not match regex r'https://github.com/(.+)/(.+)/pull/([0-9]+)'"
-        
+
         org = match.group(1)
         repo_name = match.group(2)
         pr_num = match.group(3)
         repo = self.gh.repository(org, repo_name)
         pr = repo.pull_request(int(pr_num))
         pr.create_review(
-            f"This PR was self-approved by {message.to.fullname}. The stated reason for self-appoval was: {reason}",
+            f"This PR was self-approved by {message.frm.fullname}. The stated reason for self-appoval was: {reason}",
             event="APPROVE",
         )
         return f"{pr} was succesfully self-approved."
