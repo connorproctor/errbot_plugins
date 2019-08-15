@@ -44,6 +44,8 @@ class Selfapprove(BotPlugin):
         "--test-only-changes", help="Are these test only changes?", action="store_true"
     )
     def selfapprove(self, message, pr, reason, test_only_changes):
+        if not message.to.name == 'self_approve':
+            return "!selfapprove command must be run from #self_approve channel"
         if not test_only_changes:
             return "Changes that touch more than just tests must be approved by another engineer."
 
@@ -53,6 +55,8 @@ class Selfapprove(BotPlugin):
 
         org = match.group(1)
         repo_name = match.group(2)
+        if not repo_name == 'apm_bundle':
+            return f"selfapprove currently only works with apm_bundle"
         pr_num = match.group(3)
         repo = self.gh.repository(org, repo_name)
         pr = repo.pull_request(int(pr_num))
