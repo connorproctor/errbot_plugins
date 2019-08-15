@@ -1,0 +1,9 @@
+[Core]
+name = selfapprove
+module = selfapprove
+
+[Documentation]
+description = Self approve your github PR via a bot
+
+[Python]
+version = 3
