@@ -64,4 +64,4 @@ class Selfapprove(BotPlugin):
             f"This PR was self-approved by {message.frm.fullname}. The stated reason for self-appoval was: {reason}",
             event="APPROVE",
         )
-        return f"{pr} was succesfully self-approved."
+        return f"{pr} was succesfully self-approved by {message.frm.fullname}. Reason: {reason}"
